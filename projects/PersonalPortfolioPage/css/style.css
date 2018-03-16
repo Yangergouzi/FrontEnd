@@ -61,8 +61,7 @@ nav a{
     background: rgba(240, 149, 107, 0.69);
 }
 .title a{
-    color: grey;
-    margin-left: 60%;
+    color: #5F5D5D;
 }
 .protfolio h2,.contact h2{
     font-weight: bold;
