@@ -1,0 +1,52 @@
+[
+    {
+        "id":"1",
+        "quote":"Don't cry because it's over, smile because it happened.",
+        "anthor":" Dr. Seuss",
+    },
+    {
+        "id":"2",
+        "quote":"I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.",
+        "anthor":" Marilyn Monroe",
+    },
+    {
+        "id":"3",
+        "quote":"You've gotta dance like there's nobody watching,Love like you'll never be hurt,Sing like there's nobody listening,And live like it's heaven on earth.",
+        "anthor":"William W. Purkey",
+    },
+    {
+        "id":"4",
+        "quote":"You only live once, but if you do it right, once is enough.",
+        "anthor":"Mae West",
+    },
+    {
+        "id":"5",
+        "quote":"In three words I can sum up everything I've learned about life: it goes on.",
+        "anthor":"Robert Frost",
+    },
+    {
+        "id":"6",
+        "quote":"To live is the rarest thing in the world. Most people exist, that is all.",
+        "anthor":" Oscar Wilde",
+    },
+    {
+        "id":"7",
+        "quote":"Insanity is doing the same thing, over and over again, but expecting different results.",
+        "anthor":"Narcotics Anonymous",
+    },
+    {
+        "id":"8",
+        "quote":"It is better to be hated for what you are than to be loved for what you are not.",
+        "anthor":" André Gide, Autumn Leaves",
+    },
+    {
+        "id":"9",
+        "quote":"There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.",
+        "anthor":"Albert Einstein",
+    },
+    {
+        "id":"10",
+        "quote":"It does not do to dwell on dreams and forget to live.",
+        "anthor":" J.K. Rowling, Harry Potter and the Sorcerer's Stone",
+    }
+]

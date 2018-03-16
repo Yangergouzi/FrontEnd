@@ -1,0 +1,132 @@
+<!-- <!doctype html> -->
+<html>
+    <head>
+            <link rel="stylesheet" href="css/font-awesome.min.css">
+            <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+            <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+            <link href="https://fonts.googleapis.com/css?family=Rye|Roboto+Condensed|Slabo" rel="stylesheet">
+            
+           
+        <title>Random Quote Machine</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                vertical-align: baseline;
+                
+             }
+           body{
+            background-color: #A1D8F8;
+           }
+            #box{
+                
+                width:800px;
+                height: 460px;;
+                margin:5% auto auto auto;
+                background: rgba(146, 167, 163, 0.66);
+                border:5px dashed #374441;
+                border-radius: 10%;
+            }
+            .tit{
+                text-align: center;
+                font-family: 'Rye', cursive;
+                color:#5F2803;
+            }
+            .quotesPlace{
+                width: 90%;
+                height: 35%;
+                margin:5% 10% auto 10%;
+                
+            }
+            .quote-text{
+                font-family: 'Roboto Condensed',Serif;
+                font-size: 30px;
+                font-weight: bold;
+                margin-left: 4%;
+                margin-right:6%; 
+            }
+            .quote-author{
+                font-family: 'Slabo','Sans Serif';
+                font-size: 16px;
+                text-align: right;
+                margin-right:20%; 
+            }
+
+            .button{
+                margin-top: 16%;
+                text-align: center;    
+            }
+           
+            #generate-quote{
+                font-weight: bold;
+               color: rgb(196, 31, 31); 
+                font-size: 20px;
+                margin-right:16%; 
+            }
+            .icon{
+                color:#1D82C5;
+                font-size: 16px;
+                
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="box">
+            <h1 class="tit">Random Quote Machine</h1>
+            <div class="quotesPlace">
+                <blockquote class="quote-text"></blockquote><br>
+                <p class="quote-author"></p>
+            </div>
+            <div class="button">
+                 <button class="btn btn-default " id="generate-quote">Generate Quote</button>
+                 <a class="btn btn-default icon" id="Tweet"><i class="fa fa-twitter"></i></a>
+                 <a class="btn btn-default icon" id="Sina"><i class="fa fa-weibo"></i></a>
+             </div>
+        </div>
+    </body>
+
+    <script>
+        
+        $(document).ready(function(){
+            var quote,author;
+            function getNewQuote(){
+                $.ajax({
+                    type:"get",
+                    url:"https://api.forismatic.com/api/1.0/",
+                    jsonp:'jsonp',
+                    dataType:'jsonp',
+                    data:{
+                        method:'getQuote',
+                        lang:'en',
+                        format:'jsonp'
+                    },
+                    success:function(response){
+                        quote = response.quoteText;
+                        author = response.quoteAuthor;
+                        $(".quote-text").text(quote);
+                        if(author){
+                            $(".quote-author").text("by " + author);
+                        }else{
+                            $(".quote-author").text("by Unknown");
+                        }
+                    }
+                });
+            }
+            getNewQuote();
+            $("#generate-quote").on("click",function(){
+                getNewQuote();
+            });
+
+            $("#Tweet").on("click",function(){
+                window.open('http://twitter.com/intent/tweet?text=' + encodeURIComponent(quote + "by " + author));
+            });
+            $("#Sina").on("click",function(){
+                window.open('http://v.t.sina.com.cn/share/share.php?title=' + encodeURIComponent(quote + " by" + author));
+            });
+
+        });
+    </script>
+</html>

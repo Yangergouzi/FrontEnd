@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+    <head>
+        <title>维基搜索</title>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+                /* background: rgba(151, 150, 83, 0.44); */
+                background: url(http://wx3.sinaimg.cn/large/005PrRmngy1fkntg073cej311y0kudmh.jpg);
+                font-weight: bold;
+            }
+            .randomPage{
+             
+                text-align: center;
+                margin-top:15%;
+            }
+            .randomPage a{
+                text-decoration: none;
+                color:#A52742;
+                font-family: monospace;
+                font-size: 25px;
+            }
+
+            .searchIcon{
+                margin-top:5%;
+                text-align: center;
+                color: #A52742;
+            }
+            .searchIcon p{
+                font-size:25px;
+                font-family: monospace;
+            }
+            .searchIcon i{
+                font-size: 30px;
+            }
+            .searchBar{
+                margin-top:5%;
+                text-align: center;
+            }
+            .searchBar .searchValue{
+                margin:auto 20px auto 20px;
+                border: 3px solid #A52742;
+                border-radius: 10px;
+                width: 0px;
+                height: 20px;
+                animation: elongate 0.3s forwards;
+            }
+            .searchBar i{
+                color: #A52742;
+                font-size: 20px;
+            }
+            .randomPage a:hover,.searchIcon i:hover, #searchBtn:hover,#return:hover{
+                color:#FF7300;
+            }
+
+            .searchResult ul li{
+                background: rgba(165, 153, 137, 0.54);
+                width: 90%;
+                box-shadow: 3px 2px rgba(128, 128, 128, 0.52);
+                padding-left : 10px;
+                border-radius:5px;
+                list-style: none;
+                animation:slide 3s forwards;
+            }
+            .searchResult ul li:hover{
+                background: rgba(255, 115, 0, 0.51);
+            }
+            .searchResult ul li a{
+                text-decoration: none;
+                color: black;
+            }
+            /* 动画 */
+            @keyframes elongate {
+                form{width:0px;}
+                to{width:18%;}
+            }
+            @keyframes slide {
+                from{transform: translate(-90%);}
+                to{transform: translate(2%);}
+            }
+           
+          
+        </style>
+    </head>
+    <body>
+        <div class="randomPage">
+            <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Click here to get a random article</a>
+        </div>
+        <div class="searchIcon">
+            <p class="icon">Click the icon to search</p>
+            <i class="fa fa-search" id="bigSearch"></i>
+        </div>
+        <div class="searchBar">
+            <i  class="fa fa-arrow-circle-left" id="return"></i>
+            <input type="text" class="searchValue" placeholder="Search what">
+            <i  class="fa fa-search" id="searchBtn"></i>   
+        </div>
+        <div class="searchResult">
+                <ul>
+                    <li><a href="" target="_blank">
+                        <h3></h3>
+                        <p><img src=""></p>
+                    </a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank">
+                        <h3></h3>
+                        <p><img src=""></p>
+                    </a>
+                        
+                    </li>
+                    <li>
+                        <a href="" target="_blank">
+                                <h3></h3>
+                                <p><img src=""></p>
+                            </a>
+                        
+                    </li>
+                    <li>
+                            <a href="" target="_blank">
+                                    <h3></h3>
+                                    <p><img src=""></p>
+                                </a>
+                        
+                    </li>
+                    <li>
+                            <a href="" target="_blank">
+                                    <h3></h3>
+                                    <p><img src=""></p>
+                                </a>
+                    </li>
+                    <li>
+                            <a href="" target="_blank">
+                                    <h3></h3>
+                                    <p><img src=""></p>
+                                </a>
+                    </li>
+                    <li>
+                            <a href="" target="_blank">
+                                    <h3></h3>
+                                    <p><img src=""></p>
+                                </a>
+                    </li>
+                    <li>
+                            <a href="" target="_blank">
+                                    <h3></h3>
+                                    <p><img src=""></p>
+                                </a>
+                    </li>
+                    <li>
+                            <a href="" target="_blank">
+                                    <h3></h3>
+                                    <p><img src=""></p>
+                                </a>
+                    </li>
+                    <li>
+                            <a href="" target="_blank">
+                                    <h3></h3>
+                                    <p><img src=""></p>
+                                </a>
+                    </li>
+                </ol>
+            </div>
+    </body>
+    <script>
+        $(document).ready(function(){
+            $(".searchResult").css("display","none");
+            $(".searchBar").css("display","none");
+            $("#bigSearch").click(function(){
+                $(".searchIcon").css("display","none");
+                $(".searchBar").css("display","block");
+            });
+            $("#return").click(function(){
+                $(".searchIcon").css("display","block");
+                $(".searchBar").css("display","none");
+                $(".searchResult").css("display","none");
+            });
+           $("#searchBtn").click(function(){
+                $(".randomPage").css("margin-top","2%");
+                $(".searchResult").css("display","block");
+           }); 
+
+           var url='https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&origin=*&gsrsearch=';
+           function search(url){
+               $.ajax({
+                        url: url,
+                        success:function(response){
+                            // 获取响应信息中的pageid
+                            var x=[];
+                            for (var pageid in response.query.pages) {
+                                x.push(pageid);
+                            }
+                            $(x).each(function(index) {
+                                var page=response.query.pages[x[index]];
+                                var title=page.title;
+                                var extract=page.extract;
+                                var imgsrc="";
+                                try{
+                                    imgsrc=page.thumbnail.source;
+                                }catch(e){}
+                                var listcontent="";
+                                if(imgsrc){
+                                    listcontent="<img src='"+imgsrc+"'>";
+                                }
+                                listcontent+=extract;
+                                var href="http://en.wikipedia.org/wiki/"+encodeURIComponent(title);
+                                var list=$(".searchResult ul li").eq(index);
+                                list.find('a').attr('href', href);
+                                list.find('h3').text(title);
+                                list.find('p').html(listcontent);
+                            });
+                        }
+                    });
+                } 
+
+                $("#searchBtn").click(function(){
+                    var searchWhat = $(".searchValue").val();
+                    if(searchWhat && searchWhat!=="Search what"){
+                        var searchUrl = url + searchWhat;
+                        $(".searchValue").val('');
+                        search(searchUrl);
+                    }
+                });
+              
+            }); 
+    </script>
+</html>

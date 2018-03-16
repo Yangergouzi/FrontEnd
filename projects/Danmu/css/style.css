@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.box{
+   width:100%;
+   height: 100%
+}
+.wall{
+    position: absolute; 
+    top:0;
+    left:0; 
+    width:100%;  
+    height:100%;  
+    overflow:hidden;  
+    margin:0 auto;
+    background: rgba(107, 167, 39, 0.27);
+}
+.wall p{
+    position: absolute;
+    width:20%;
+    left:1370px;
+    /* margin:0;
+    padding: 0;
+     */
+}
+form{
+    position: absolute;
+    left:40%;
+    top: 70%;
+}
+#txt{
+    width: 100%;
+    height: 40px;
+    margin-bottom:10%; 
+}
+.bt1{
+    width: 40%;
+    margin-left:5%; 
+    margin-right: 10%;
+    border: 2px solid #DB6666;
+}
+.bt2{
+    width:40%;
+    border: 2px solid #7C7979;
+}
